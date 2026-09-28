@@ -1,4 +1,4 @@
-# aosp source download and build setup
+# Aosp source download and build setup
 
 This document covers the complete sequence for downloading AOSP source code, configuring the development environment, selecting a platform/product target, and building Android.
 
@@ -100,9 +100,6 @@ Verify:
 ```bash
 git config --global --list
 ```
-
-### A Google account becomes relevant when contributing changes to the Android Open Source Project through the public Gerrit infrastructure. The email configured in Git does not have to be a mail address.
-
 ---
 
 ## install repo
@@ -364,6 +361,10 @@ lunch
 
 to display the available targets for the current source tree.
 
+```bash
+lunch aosp_cf_x86_64-userdebug
+```
+The exact target names depend on the checked-out AOSP branch.
 ---
 
 # build variants
@@ -411,81 +412,3 @@ Useful when deep platform development requires maximum debugging support.
 
 ---
 
-# phone target
-
-For general Android platform development, a Cuttlefish phone target is useful.
-
-Typical target family:
-
-```text
-aosp_cf_x86_64_phone
-```
-
-The exact target name may include the release configuration and build variant.
-
-For example, the structure can look like:
-
-```text
-aosp_cf_x86_64_phone-<release_config>-userdebug
-```
-
-Use:
-
-```bash
-source build/envsetup.sh
-lunch
-```
-
-and select the phone target available in your checked-out branch.
-
-### useful for
-
-```text
-Android Framework
-SystemServer
-ActivityManager
-WindowManager
-SurfaceFlinger
-HWUI
-Binder
-Graphics
-Audio
-Native services
-```
-
----
-
-# automotive / aaos target
-
-Android Automotive OS uses the Android platform with automotive-specific components.
-
-Conceptually:
-
-```text
-AOSP
- |
- +-- Android Framework
- |
- +-- Native
- |
- +-- HAL
- |
- +-- Car Framework
-      |
-      +-- CarService
-      +-- VHAL
-      +-- CarAudio
-      +-- Automotive services
-```
-
-Cuttlefish provides an automotive target for AAOS development.
-
-Typical target family:
-
-```text
-aosp_cf_x86_64_auto
-```
-
-The exact target name depends on the checked-out Android release.
-
-For example, automotive configurations can have a stru
