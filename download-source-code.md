@@ -408,6 +408,29 @@ For your AOSP platform learning, `userdebug` is generally the useful variant.
 
 Engineering build with additional debugging/development capabilities.
 
+### Example: AOSP Build
+
+Example build setup used for Android 15 AAOS:
+
+```bash
+repo init --partial-clone --no-use-superproject \
+    -b android-15.0.0_r16 \
+    -u https://android.googlesource.com/platform/manifest
+
+repo sync -c -j8
+
+source build/envsetup.sh
+
+lunch sdk_car_x86_64-trunk_staging-userdebug
+
+m -j$(nproc)
+```
+
+**Build target:** `sdk_car_x86_64-trunk_staging-userdebug`
+
+This is an **Android Automotive OS (AAOS) x86_64 userdebug target**, primarily intended for emulator/virtual development and AOSP platform development.
+
+
 Useful when deep platform development requires maximum debugging support.
 
 ---
